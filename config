@@ -1,0 +1,27 @@
+#!/bin/bash
+# ANON-IRAN OS v7.0 — live-build auto/config
+set -e
+lb config noauto \
+  --apt-options "--yes -o Acquire::Retries=3 -o APT::Get::AllowUnauthenticated=true" \
+  --apt-recommends false \
+  --architecture amd64 \
+  --archive-areas "main contrib non-free non-free-firmware" \
+  --binary-images iso-hybrid \
+  --bootappend-live "boot=live components quiet splash username=anoniran hostname=anon-iran-os locales=en_US.UTF-8 keyboard-layouts=us noeject toram" \
+  --bootloader grub-efi \
+  --chroot-filesystem squashfs \
+  --compression xz \
+  --debootstrap-options "--include=apt-transport-https,ca-certificates,gnupg" \
+  --debian-installer none \
+  --distribution bookworm \
+  --image-name "ANON-IRAN-OS-v7.0" \
+  --iso-application "ANON-IRAN OS v7.0 Red Team Platform" \
+  --iso-publisher "ANON-IRAN Security" \
+  --iso-volume "ANONIRAN-v7" \
+  --memtest none \
+  --mirror-bootstrap "https://deb.debian.org/debian" \
+  --mirror-chroot-security "https://security.debian.org/debian-security" \
+  --security true \
+  --updates true \
+  --win32-loader false \
+  "${@}"
